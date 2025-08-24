@@ -1,0 +1,356 @@
+PHASE 3: DEAL PIPELINE & SALES MANAGEMENT
+==========================================
+Timeline: Week 5-6 (14 days)
+Prerequisites: Phase 1 & 2 must be 100% complete
+==========================================
+
+🎯 PHASE 3 OBJECTIVES
+=====================
+✅ Build comprehensive deal management system
+✅ Create visual sales pipeline with drag-and-drop
+✅ Implement sales forecasting and analytics
+✅ Add deal collaboration and team features
+✅ Design smooth deal workflow UI/UX
+✅ Integrate with leads and contacts
+
+📋 DETAILED TASK BREAKDOWN
+==========================
+
+DAY 1-2: DEAL DATABASE SCHEMA
+==============================
+
+TASK 3.1: Deal Database Design
+------------------------------
+□ Extend PostgreSQL schema in src/models/Schema.ts:
+
+DEALS TABLE:
+```sql
+- id (UUID, primary key)
+- title (varchar, not null)
+- description (text)
+- contact_id (UUID, foreign key to contacts)
+- lead_id (UUID, foreign key to leads, nullable)
+- company_name (varchar)
+- deal_value (decimal, not null)
+- currency (varchar, default 'USD')
+- stage_id (UUID, foreign key to deal_stages)
+- probability (integer, 0-100)
+- expected_close_date (date)
+- actual_close_date (date)
+- deal_source (enum: inbound, outbound, referral, partner, event, other)
+- priority (enum: low, medium, high, urgent)
+- status (enum: open, won, lost, on_hold)
+- assigned_to (UUID, foreign key to users)
+- team_members (UUID[], array of user IDs)
+- tags (text[])
+- custom_fields (jsonb)
+- notes (text)
+- created_by (UUID, foreign key to users)
+- organization_id (UUID, foreign key)
+- created_at (timestamp)
+- updated_at (timestamp)
+```
+
+DEAL_STAGES TABLE:
+```sql
+- id (UUID, primary key)
+- name (varchar, not null)
+- description (text)
+- order_index (integer)
+- probability_default (integer, 0-100)
+- color (varchar)
+- is_active (boolean, default true)
+- is_closed_won (boolean, default false)
+- is_closed_lost (boolean, default false)
+- organization_id (UUID, foreign key)
+- created_at (timestamp)
+- updated_at (timestamp)
+```
+
+DEAL_ACTIVITIES TABLE:
+```sql
+- id (UUID, primary key)
+- deal_id (UUID, foreign key to deals)
+- activity_type (enum: call, email, meeting, note, stage_change, value_change, demo, proposal)
+- subject (varchar)
+- description (text)
+- duration_minutes (integer)
+- outcome (varchar)
+- next_action (varchar)
+- scheduled_at (timestamp)
+- completed_at (timestamp)
+- created_by (UUID, foreign key to users)
+- organization_id (UUID, foreign key)
+- created_at (timestamp)
+```
+
+DEAL_PRODUCTS TABLE:
+```sql
+- id (UUID, primary key)
+- deal_id (UUID, foreign key to deals)
+- product_name (varchar, not null)
+- description (text)
+- quantity (integer, default 1)
+- unit_price (decimal)
+- total_price (decimal)
+- discount_percent (decimal, default 0)
+- created_at (timestamp)
+```
+
+TASK 3.2: Database Migration & Optimization
+-------------------------------------------
+□ Generate migration for deal tables
+□ Add performance indexes:
+  - deals(organization_id, stage_id)
+  - deals(assigned_to, status)
+  - deals(expected_close_date, status)
+  - deals(deal_value DESC)
+  - deal_activities(deal_id, created_at)
+  - deal_stages(organization_id, order_index)
+□ Create default deal stages for new organizations
+□ Add database constraints and validations
+
+DAY 3-4: DEAL CORE FUNCTIONALITY
+=================================
+
+TASK 3.3: Deal Data Layer
+-------------------------
+□ Create src/features/deals/
+  - types/deal.types.ts
+  - api/deals.api.ts
+  - api/dealStages.api.ts
+  - hooks/useDeals.ts
+  - hooks/useDealStages.ts
+  - hooks/useDealActivities.ts
+  - utils/dealCalculations.ts
+  - utils/dealValidation.ts
+  - utils/forecastingUtils.ts
+
+□ Implement deal CRUD operations:
+  ```typescript
+  // Deal API functions
+  - createDeal(dealData)
+  - updateDeal(id, dealData)
+  - deleteDeal(id)
+  - getDeals(filters, pagination)
+  - getDealById(id)
+  - moveDealToStage(dealId, stageId)
+  - updateDealValue(dealId, value)
+  - assignDealToUser(dealId, userId)
+  - addTeamMember(dealId, userId)
+  - duplicateDeal(dealId)
+  ```
+
+TASK 3.4: Deal Stage Management
+------------------------------
+□ Implement deal stage system:
+  - Create default stages (Lead, Qualified, Proposal, Negotiation, Closed Won, Closed Lost)
+  - Custom stage creation and editing
+  - Stage reordering with drag-and-drop
+  - Stage-specific automation rules
+  - Stage probability calculations
+  - Stage conversion analytics
+
+DAY 5-6: DEAL PIPELINE UI
+==========================
+
+TASK 3.5: Visual Pipeline Interface
+-----------------------------------
+□ Create pipeline components:
+  - components/DealPipeline.tsx
+  - components/DealStageColumn.tsx
+  - components/DealCard.tsx
+  - components/DealDragDrop.tsx
+  - components/PipelineHeader.tsx
+
+□ Implement Kanban-style pipeline:
+  - Smooth drag-and-drop between stages
+  - Real-time updates
+  - Stage summaries (count, total value)
+  - Quick deal creation
+  - Bulk deal operations
+  - Pipeline filtering and search
+  - Responsive mobile design
+
+TASK 3.6: Deal Detail & Forms
+-----------------------------
+□ Create deal management components:
+  - components/DealDetail.tsx
+  - components/DealForm.tsx
+  - components/DealActivityForm.tsx
+  - components/DealProducts.tsx
+  - components/DealTeam.tsx
+  - components/DealTimeline.tsx
+
+□ Design comprehensive deal detail view:
+  - Deal information sidebar
+  - Activity timeline with rich interactions
+  - Product/service line items
+  - Team collaboration features
+  - File attachments
+  - Deal notes and comments
+  - Quick action buttons
+
+DAY 7-8: DEAL ANALYTICS & FORECASTING
+======================================
+
+TASK 3.7: Sales Analytics Dashboard
+-----------------------------------
+□ Create analytics components:
+  - components/SalesAnalytics.tsx
+  - components/SalesForecast.tsx
+  - components/DealMetrics.tsx
+  - components/PipelineAnalytics.tsx
+  - components/SalesCharts.tsx
+
+□ Implement key sales metrics:
+  - Pipeline value by stage
+  - Win/loss rates
+  - Average deal size
+  - Sales cycle length
+  - Conversion rates between stages
+  - Monthly/quarterly forecasts
+  - Sales rep performance
+  - Deal velocity metrics
+
+TASK 3.8: Advanced Forecasting
+------------------------------
+□ Build forecasting engine:
+  - Probability-based forecasting
+  - Historical trend analysis
+  - Seasonal adjustments
+  - Multiple forecast scenarios (best case, worst case, most likely)
+  - Forecast accuracy tracking
+  - Goal vs actual comparisons
+  - Predictive analytics integration
+
+DAY 9-10: DEAL COLLABORATION & WORKFLOW
+========================================
+
+TASK 3.9: Team Collaboration
+----------------------------
+□ Implement collaboration features:
+  - Deal team assignment
+  - Role-based permissions on deals
+  - Internal deal comments
+  - @mentions and notifications
+  - Deal sharing and handoffs
+  - Collaborative deal notes
+  - Activity assignments
+
+TASK 3.10: Deal Automation
+--------------------------
+□ Create automation system:
+  - Stage-based automation rules
+  - Automatic task creation
+  - Email notifications and reminders
+  - Deal aging alerts
+  - Follow-up scheduling
+  - Probability updates based on activities
+  - Integration with email templates
+
+DAY 11-12: DEAL INTEGRATION & REPORTING
+========================================
+
+TASK 3.11: System Integration
+-----------------------------
+□ Integrate with existing systems:
+  - Seamless lead-to-deal conversion
+  - Contact relationship management
+  - Activity synchronization
+  - User assignment consistency
+  - Data validation across systems
+  - Unified search functionality
+
+TASK 3.12: Deal Reporting
+-------------------------
+□ Create comprehensive reporting:
+  - Deal source analysis
+  - Stage conversion reports
+  - Sales rep performance reports
+  - Win/loss analysis
+  - Deal aging reports
+  - Custom date range reports
+  - Export functionality (CSV, PDF, Excel)
+  - Scheduled report delivery
+
+DAY 13-14: TESTING & OPTIMIZATION
+==================================
+
+TASK 3.13: Deal System Testing
+------------------------------
+□ Comprehensive testing:
+  - Deal CRUD operations
+  - Pipeline drag-and-drop functionality
+  - Stage management
+  - Forecasting accuracy
+  - Team collaboration features
+  - Integration with leads/contacts
+  - Mobile responsiveness
+  - Performance under load
+
+TASK 3.14: UX Polish & Performance
+----------------------------------
+□ Optimize deal system:
+  - Smooth animations and transitions
+  - Fast pipeline loading
+  - Real-time collaboration updates
+  - Intuitive user interactions
+  - Error handling and validation
+  - Accessibility compliance
+  - Mobile UX optimization
+  - Database query optimization
+
+🎯 PHASE 3 SUCCESS CRITERIA
+===========================
+
+FUNCTIONAL REQUIREMENTS:
+□ Complete deal lifecycle management
+□ Visual pipeline with smooth drag-and-drop
+□ Accurate sales forecasting
+□ Effective team collaboration
+□ Comprehensive deal analytics
+□ Seamless integration with leads/contacts
+
+UI/UX REQUIREMENTS:
+□ Intuitive pipeline interface
+□ Fast and responsive deal management
+□ Smooth drag-and-drop experience
+□ Clear visual hierarchy
+□ Consistent design language
+□ Mobile-optimized workflow
+
+TECHNICAL REQUIREMENTS:
+□ Optimized PostgreSQL performance
+□ Real-time collaboration features
+□ Accurate forecasting calculations
+□ Robust error handling
+□ Clean, maintainable code
+□ Comprehensive test coverage
+
+🚀 PHASE 3 DELIVERABLES
+=======================
+1. Visual deal pipeline (Kanban-style)
+2. Comprehensive deal management
+3. Sales forecasting engine
+4. Deal analytics dashboard
+5. Team collaboration features
+6. Deal reporting system
+7. Lead-to-deal conversion workflow
+
+📈 PHASE 3 TO PHASE 4 TRANSITION
+================================
+□ User acceptance testing
+□ Sales team feedback collection
+□ Performance optimization review
+□ Analytics accuracy validation
+□ Prepare for Activity Management (Phase 4)
+□ Document deal management workflows
+
+PHASE 3 COMPLETION CHECKLIST:
+□ Pipeline is smooth and intuitive
+□ Forecasting provides accurate insights
+□ Team collaboration works seamlessly
+□ Analytics deliver valuable data
+□ Integration with other modules complete
+□ Ready for activity management phase

@@ -8,6 +8,27 @@
       "when": 1745518076143,
       "tag": "0000_init-db",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1755962540861,
+      "tag": "0001_motionless_white_queen",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1755965188729,
+      "tag": "0002_deep_maverick",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1755966822482,
+      "tag": "0003_left_scorpion",
+      "breakpoints": true
     }
   ]
 }

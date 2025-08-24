@@ -4,9 +4,13 @@ import { enUS, frFR } from '@clerk/localizations';
 
 const localePrefix: LocalePrefixMode = 'as-needed';
 
-// FIXME: Update this configuration file based on your project information
+// AWCRM - Enterprise CRM & Business Process Management Configuration
 export const AppConfig = {
-  name: 'Nextjs Starter',
+  name: 'AWCRM',
+  title: 'AWCRM - Enterprise CRM & Business Process Management',
+  description: 'AI-powered CRM with workflow automation for modern enterprises. Manage contacts, leads, deals, and business processes in one unified platform.',
+  version: '1.0.0',
+  author: 'AWCRM Team',
   locales: ['en', 'fr'],
   defaultLocale: 'en',
   localePrefix,

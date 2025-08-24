@@ -1,18 +1,27 @@
-# Boilerplate and Starter for Next.js 15+, Tailwind CSS 4, and TypeScript.
+# 🚀 AWCRM - Enterprise Customer Relationship Management System
 
-<p align="center">
-  <a href="https://demo.nextjs-boilerplate.com">
-    <img
-      src="public/assets/images/nextjs-starter-banner.png?raw=true"
-      alt="Next js starter banner"
-      style="max-width: 100%; height: auto;"
-    />
-  </a>
-</p>
+**A modern, full-featured CRM built with Next.js 15, React 19, and TypeScript**
 
-🚀 Boilerplate and Starter for Next.js with App Router, Tailwind CSS, and TypeScript ⚡️ Prioritizing developer experience first: Next.js, TypeScript, ESLint, Prettier, Lefthook (replacing Husky), Lint-Staged, Vitest (replacing Jest), Testing Library, Playwright, Commitlint, VSCode, Tailwind CSS, Authentication with [Clerk](https://clerk.com?utm_source=github&utm_medium=sponsorship&utm_campaign=nextjs-boilerplate), Database with DrizzleORM (PostgreSQL, SQLite, and MySQL), Local database with PGlite and production with [Prisma Postgres](https://www.prisma.io/?via=nextjs-boilerplate), Error Monitoring with [Sentry](https://sentry.io/for/nextjs/?utm_source=github&utm_medium=paid-community&utm_campaign=general-fy25q1-nextjs&utm_content=github-banner-nextjsboilerplate-logo), Logging with LogTape (replacing Pino.js) and Log Management, Monitoring as Code, Storybook, Multi-language (i18n), AI-powered code reviews with [CodeRabbit](https://www.coderabbit.ai?utm_source=next_js_starter&utm_medium=github&utm_campaign=next_js_starter_oss_2025), Secure with [Arcjet](https://launch.arcjet.com/Q6eLbRE) (Bot detection, Rate limiting, Attack protection, etc.) and more.
+[![Next.js](https://img.shields.io/badge/Next.js-15.0-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.0-blue)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC)](https://tailwindcss.com/)
+[![Drizzle ORM](https://img.shields.io/badge/Drizzle_ORM-Latest-green)](https://orm.drizzle.team/)
 
-Clone this project and use it to create your own Next.js project. You can check out the live demo at [Next.js Boilerplate](https://demo.nextjs-boilerplate.com), which includes a working authentication system.
+## 🎯 Overview
+
+AWCRM is a comprehensive, enterprise-grade Customer Relationship Management system designed for modern businesses. Built with cutting-edge technologies, it provides a seamless experience for managing contacts, companies, deals, and activities while maintaining professional design standards and optimal performance.
+
+### Key Highlights
+
+- **🏢 Enterprise Ready** - Multi-tenant architecture with organization support
+- **⚡ High Performance** - Optimized for speed with modern React patterns
+- **📱 Responsive Design** - Works perfectly on desktop, tablet, and mobile
+- **🔒 Secure** - Built-in authentication and authorization with Clerk
+- **🎨 Professional UI** - Information-dense, intuitive interface
+- **📊 Real-time Analytics** - Live dashboards and reporting
+- **🔍 Advanced Search** - Global search with keyboard shortcuts (Cmd/Ctrl+K)
+- **📥 Data Import** - CSV/Excel bulk import capabilities
 
 ## Sponsors
 

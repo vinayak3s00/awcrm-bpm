@@ -1,0 +1,328 @@
+PHASE 2: LEAD MANAGEMENT SYSTEM
+================================
+Timeline: Week 3-4 (14 days)
+Prerequisites: Phase 1 must be 100% complete
+================================
+
+🎯 PHASE 2 OBJECTIVES
+=====================
+✅ Build comprehensive lead management system
+✅ Implement lead scoring and qualification
+✅ Create lead conversion pipeline
+✅ Add lead source tracking and attribution
+✅ Design smooth lead workflow UI/UX
+✅ Integrate with existing contact system
+
+📋 DETAILED TASK BREAKDOWN
+==========================
+
+DAY 1-2: LEAD DATABASE SCHEMA
+==============================
+
+TASK 2.1: Lead Database Design
+------------------------------
+□ Extend PostgreSQL schema in src/models/Schema.ts:
+
+LEADS TABLE:
+```sql
+- id (UUID, primary key)
+- title (varchar, not null)
+- description (text)
+- contact_id (UUID, foreign key to contacts)
+- company_name (varchar)
+- industry (varchar)
+- lead_source (enum: website, referral, social, email, phone, event, other)
+- status (enum: new, contacted, qualified, unqualified, converted, lost)
+- score (integer, 0-100)
+- priority (enum: low, medium, high, urgent)
+- estimated_value (decimal)
+- probability (integer, 0-100)
+- expected_close_date (date)
+- actual_close_date (date)
+- assigned_to (UUID, foreign key to users)
+- tags (text[])
+- custom_fields (jsonb)
+- notes (text)
+- created_by (UUID, foreign key to users)
+- organization_id (UUID, foreign key)
+- created_at (timestamp)
+- updated_at (timestamp)
+```
+
+LEAD_ACTIVITIES TABLE:
+```sql
+- id (UUID, primary key)
+- lead_id (UUID, foreign key to leads)
+- activity_type (enum: call, email, meeting, note, status_change, score_change)
+- subject (varchar)
+- description (text)
+- duration_minutes (integer)
+- outcome (varchar)
+- next_action (varchar)
+- scheduled_at (timestamp)
+- completed_at (timestamp)
+- created_by (UUID, foreign key to users)
+- organization_id (UUID, foreign key)
+- created_at (timestamp)
+```
+
+LEAD_SCORING_RULES TABLE:
+```sql
+- id (UUID, primary key)
+- name (varchar, not null)
+- description (text)
+- condition_field (varchar)
+- condition_operator (enum: equals, contains, greater_than, less_than, in_list)
+- condition_value (varchar)
+- score_change (integer)
+- is_active (boolean, default true)
+- organization_id (UUID, foreign key)
+- created_at (timestamp)
+- updated_at (timestamp)
+```
+
+TASK 2.2: Database Migration & Indexes
+--------------------------------------
+□ Generate migration for lead tables
+□ Add proper indexes for performance:
+  - leads(organization_id, status)
+  - leads(assigned_to, status)
+  - leads(lead_source, created_at)
+  - leads(score DESC)
+  - lead_activities(lead_id, created_at)
+□ Run migrations and verify schema
+□ Create seed data for development
+
+DAY 3-4: LEAD CORE FUNCTIONALITY
+=================================
+
+TASK 2.3: Lead Data Layer
+-------------------------
+□ Create src/features/leads/
+  - types/lead.types.ts
+  - api/leads.api.ts
+  - hooks/useLeads.ts
+  - hooks/useLeadActivities.ts
+  - hooks/useLeadScoring.ts
+  - utils/leadScoring.ts
+  - utils/leadValidation.ts
+
+□ Implement lead CRUD operations:
+  ```typescript
+  // Lead API functions
+  - createLead(leadData)
+  - updateLead(id, leadData)
+  - deleteLead(id)
+  - getLeads(filters, pagination)
+  - getLeadById(id)
+  - convertLeadToContact(leadId)
+  - assignLead(leadId, userId)
+  - updateLeadScore(leadId, score)
+  ```
+
+TASK 2.4: Lead Scoring Engine
+-----------------------------
+□ Implement automatic lead scoring:
+  - Email domain scoring (company emails vs personal)
+  - Industry-based scoring
+  - Company size scoring
+  - Engagement activity scoring
+  - Source quality scoring
+□ Create manual score adjustment system
+□ Add score history tracking
+□ Implement score recalculation triggers
+
+DAY 5-6: LEAD UI COMPONENTS
+============================
+
+TASK 2.5: Lead List & Management
+--------------------------------
+□ Create lead management components:
+  - components/LeadList.tsx
+  - components/LeadCard.tsx
+  - components/LeadFilters.tsx
+  - components/LeadSearch.tsx
+  - components/LeadBulkActions.tsx
+
+□ Design clean lead list with:
+  - Sortable columns (score, date, value)
+  - Filter by status, source, assigned user
+  - Quick actions (call, email, convert)
+  - Bulk selection and operations
+  - Infinite scroll or pagination
+  - Real-time score updates
+
+TASK 2.6: Lead Detail & Forms
+-----------------------------
+□ Create lead detail components:
+  - components/LeadDetail.tsx
+  - components/LeadForm.tsx
+  - components/LeadActivityForm.tsx
+  - components/LeadConversion.tsx
+  - components/LeadAssignment.tsx
+
+□ Implement smooth lead detail view:
+  - Sidebar with lead information
+  - Activity timeline
+  - Score breakdown
+  - Quick action buttons
+  - Notes and attachments
+  - Conversion workflow
+
+DAY 7-8: LEAD WORKFLOW & AUTOMATION
+====================================
+
+TASK 2.7: Lead Status Pipeline
+------------------------------
+□ Create lead pipeline components:
+  - components/LeadPipeline.tsx
+  - components/LeadStageCard.tsx
+  - components/LeadDragDrop.tsx
+
+□ Implement Kanban-style pipeline:
+  - Drag and drop between stages
+  - Stage-specific actions
+  - Automatic score adjustments
+  - Stage transition rules
+  - Visual progress indicators
+
+TASK 2.8: Lead Assignment & Routing
+-----------------------------------
+□ Create assignment system:
+  - Round-robin assignment
+  - Territory-based assignment
+  - Skill-based assignment
+  - Manual assignment override
+  - Assignment notifications
+□ Add assignment rules configuration
+□ Implement assignment analytics
+
+DAY 9-10: LEAD ANALYTICS & REPORTING
+=====================================
+
+TASK 2.9: Lead Analytics Dashboard
+----------------------------------
+□ Create analytics components:
+  - components/LeadAnalytics.tsx
+  - components/LeadMetrics.tsx
+  - components/LeadCharts.tsx
+  - components/ConversionFunnel.tsx
+
+□ Implement key metrics:
+  - Lead conversion rates
+  - Average lead score
+  - Source performance
+  - Time to conversion
+  - Lead velocity
+  - Assignment performance
+
+TASK 2.10: Lead Reporting
+-------------------------
+□ Create reporting system:
+  - Lead source reports
+  - Conversion rate reports
+  - Sales rep performance
+  - Lead aging reports
+  - Custom date ranges
+  - Export functionality (CSV, PDF)
+
+DAY 11-12: LEAD INTEGRATION & AUTOMATION
+=========================================
+
+TASK 2.11: Contact Integration
+------------------------------
+□ Implement lead-to-contact conversion:
+  - Seamless conversion workflow
+  - Data mapping and validation
+  - Duplicate contact detection
+  - Conversion history tracking
+  - Automatic activity transfer
+
+TASK 2.12: Email & Communication
+--------------------------------
+□ Add communication features:
+  - Email templates for leads
+  - Automated follow-up sequences
+  - Email tracking integration
+  - Call logging from lead view
+  - SMS integration (basic)
+  - Communication history
+
+DAY 13-14: TESTING & OPTIMIZATION
+==================================
+
+TASK 2.13: Lead System Testing
+------------------------------
+□ Comprehensive testing:
+  - Lead CRUD operations
+  - Scoring algorithm accuracy
+  - Pipeline drag-and-drop
+  - Conversion workflows
+  - Assignment rules
+  - Analytics calculations
+  - Mobile responsiveness
+
+TASK 2.14: Performance & UX Polish
+----------------------------------
+□ Optimize lead system:
+  - Database query optimization
+  - Real-time updates
+  - Smooth animations
+  - Loading state management
+  - Error handling
+  - Accessibility compliance
+  - Mobile UX refinement
+
+🎯 PHASE 2 SUCCESS CRITERIA
+===========================
+
+FUNCTIONAL REQUIREMENTS:
+□ Complete lead lifecycle management
+□ Accurate lead scoring system
+□ Smooth lead conversion process
+□ Effective assignment and routing
+□ Comprehensive analytics and reporting
+□ Seamless contact integration
+
+UI/UX REQUIREMENTS:
+□ Intuitive lead pipeline interface
+□ Fast and responsive lead list
+□ Smooth drag-and-drop functionality
+□ Clear visual hierarchy
+□ Consistent design with Phase 1
+□ Mobile-optimized experience
+
+TECHNICAL REQUIREMENTS:
+□ Optimized PostgreSQL queries
+□ Real-time score calculations
+□ Efficient data loading
+□ Proper error handling
+□ Clean code architecture
+□ Comprehensive testing
+
+🚀 PHASE 2 DELIVERABLES
+=======================
+1. Complete lead management system
+2. Intelligent lead scoring engine
+3. Visual lead pipeline (Kanban)
+4. Lead analytics dashboard
+5. Lead-to-contact conversion
+6. Assignment and routing system
+7. Communication integration
+
+📈 PHASE 2 TO PHASE 3 TRANSITION
+================================
+□ User acceptance testing
+□ Performance benchmarking
+□ UI/UX feedback collection
+□ Database optimization review
+□ Prepare for Deal Pipeline (Phase 3)
+□ Document lead management workflows
+
+PHASE 2 COMPLETION CHECKLIST:
+□ All lead features working smoothly
+□ Scoring system accurate and fast
+□ UI/UX is intuitive and responsive
+□ Analytics provide valuable insights
+□ Integration with contacts seamless
+□ Ready for deal management phase

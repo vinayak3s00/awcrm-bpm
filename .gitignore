@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
+# Dependencies (FIXED: was /node_modules, now node_modules/)
+node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -50,6 +50,13 @@ next-env.d.ts
 
 # Database
 *.db
+*.sqlite
+*.sqlite3
+database.db
+dev.db
+test.db
+local.db/
+migrations-backup/
 
 # storybook
 storybook-static
@@ -60,3 +67,217 @@ build-archive.log
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+# CRM Specific Files
+crm-data/
+export-data/
+import-data/
+backup-data/
+sample-data/
+uploads/
+user-content/
+attachments/
+
+# Email and Integration Configs (use environment variables instead)
+integrations-config.json
+email-config.json
+calendar-config.json
+
+# Analytics and Caching
+analytics-cache/
+metrics-data/
+.cache/
+cache/
+email-templates-cache/
+
+# Reports and Exports
+reports/
+exports/
+custom-fields-backup/
+
+# Logs and Debugging
+logs/
+*.log
+error-logs/
+crash-reports/
+debug-dumps/
+performance-logs/
+audit-logs/
+
+# Development Tools
+.eslintcache
+.stylelintcache
+.prettiercache
+
+# IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# OS Files (duplicates removed)
+# .DS_Store already covered above
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+# Thumbs.db already covered above
+*.lnk
+
+# Security and Keys
+secrets/
+.secrets
+# *.pem already covered above
+*.key
+*.crt
+service-account-key.json
+*.p12
+*.pfx
+.env.production
+.env.staging
+
+# Temporary Files
+tmp/
+temp/
+.tmp/
+.temp/
+*.tmp
+*.temp
+*.backup
+*.bak
+*.orig
+
+# Archive Files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Testing and Coverage
+coverage/
+.nyc_output/
+junit.xml
+test-results.xml
+
+# Performance and Monitoring
+.lighthouse/
+.sentry-native-consts
+profiling-data/
+load-test-results/
+*.hprof
+*.heapsnapshot
+
+# Documentation Build
+docs/build/
+docs/.vuepress/dist/
+api-docs/build/
+
+# Deployment
+deploy/
+deployment/
+.deploy/
+
+# Docker and Kubernetes
+docker-compose.override.yml
+*.kubeconfig
+
+# Cloud Providers
+.aws/
+.gcloud/
+.azure/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Redis and Search
+dump.rdb
+elasticsearch-data/
+search-indexes/
+
+# Session and Queue Data
+sessions/
+notification-queue/
+
+# Security and Compliance Reports
+security-scan-results/
+vulnerability-reports/
+license-reports/
+quality-reports/
+
+# Additional CRM-Specific Files
+# User data exports
+*.csv.export
+*.xlsx.export
+contact-exports/
+deal-exports/
+activity-exports/
+
+# Email sync data
+email-sync-cache/
+email-attachments/
+.email-sync-state
+
+# Calendar integration
+calendar-sync-cache/
+.calendar-sync-state
+
+# Webhook data
+webhook-logs/
+webhook-queue/
+
+# Custom field definitions
+custom-fields.json
+field-mappings.json
+
+# Integration tokens (should be in env vars)
+integration-tokens.json
+oauth-tokens.json
+
+# Bulk operation results
+bulk-operation-results/
+import-results/
+export-results/
+
+# Search indexes and cache
+search-cache/
+elasticsearch-cache/
+.search-index
+
+# Notification templates
+notification-templates-cache/
+
+# Report cache
+report-cache/
+dashboard-cache/
+
+# User preferences (should be in database)
+user-preferences.json
+dashboard-layouts.json
+
+# Development and testing data
+test-data/
+mock-data/
+seed-data/
+fixtures/
+
+# API documentation cache
+api-docs-cache/
+swagger-cache/
+
+# Monitoring data
+monitoring-data/
+metrics-cache/
+health-check-logs/
+
+# Backup verification
+backup-verification/
+restore-test-results/
+
+crm-reseasrch/
+

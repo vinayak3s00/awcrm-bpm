@@ -1,0 +1,360 @@
+/* CRM Professional Design System - Information Dense UI */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Professional CRM Color Palette */
+:root {
+  /* Primary Colors - Professional Blue */
+  --crm-primary-50: #eff6ff;
+  --crm-primary-100: #dbeafe;
+  --crm-primary-500: #3b82f6;
+  --crm-primary-600: #2563eb;
+  --crm-primary-700: #1d4ed8;
+
+  /* Neutral Colors - Information Dense */
+  --crm-gray-25: #fcfcfd;
+  --crm-gray-50: #f9fafb;
+  --crm-gray-100: #f3f4f6;
+  --crm-gray-200: #e5e7eb;
+  --crm-gray-300: #d1d5db;
+  --crm-gray-400: #9ca3af;
+  --crm-gray-500: #6b7280;
+  --crm-gray-600: #4b5563;
+  --crm-gray-700: #374151;
+  --crm-gray-800: #1f2937;
+  --crm-gray-900: #111827;
+
+  /* Status Colors */
+  --crm-success: #10b981;
+  --crm-warning: #f59e0b;
+  --crm-error: #ef4444;
+  --crm-info: #3b82f6;
+
+  /* Spacing System - Compact for Information Density */
+  --crm-space-0: 0;
+  --crm-space-1: 2px;
+  --crm-space-2: 4px;
+  --crm-space-3: 6px;
+  --crm-space-4: 8px;
+  --crm-space-5: 10px;
+  --crm-space-6: 12px;
+  --crm-space-8: 16px;
+  --crm-space-10: 20px;
+  --crm-space-12: 24px;
+  --crm-space-16: 32px;
+
+  /* Typography Scale */
+  --crm-text-xs: 11px;
+  --crm-text-sm: 12px;
+  --crm-text-base: 13px;
+  --crm-text-md: 14px;
+  --crm-text-lg: 16px;
+  --crm-text-xl: 18px;
+  --crm-text-2xl: 20px;
+
+  /* Border Radius */
+  --crm-radius-sm: 3px;
+  --crm-radius-md: 4px;
+  --crm-radius-lg: 6px;
+  --crm-radius-xl: 8px;
+
+  /* Shadows - Subtle */
+  --crm-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --crm-shadow-md: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --crm-shadow-lg: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Base Styles - Professional CRM */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 13px; /* Smaller base for information density */
+  line-height: 1.4;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  font-size: var(--crm-text-base);
+  line-height: 1.4;
+  color: var(--crm-gray-800);
+  background-color: var(--crm-gray-25);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Professional CRM Component Classes */
+.crm-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: var(--crm-space-4);
+}
+
+.crm-card {
+  background: white;
+  border: 1px solid var(--crm-gray-200);
+  border-radius: var(--crm-radius-md);
+  box-shadow: var(--crm-shadow-sm);
+}
+
+.crm-card-header {
+  padding: var(--crm-space-6) var(--crm-space-8);
+  border-bottom: 1px solid var(--crm-gray-200);
+  background: var(--crm-gray-25);
+}
+
+.crm-card-content {
+  padding: var(--crm-space-6) var(--crm-space-8);
+}
+
+.crm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--crm-text-sm);
+}
+
+.crm-table th {
+  background: var(--crm-gray-50);
+  padding: var(--crm-space-4) var(--crm-space-6);
+  text-align: left;
+  font-weight: 600;
+  font-size: var(--crm-text-xs);
+  color: var(--crm-gray-600);
+  border-bottom: 1px solid var(--crm-gray-200);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.crm-table td {
+  padding: var(--crm-space-4) var(--crm-space-6);
+  border-bottom: 1px solid var(--crm-gray-100);
+  vertical-align: middle;
+}
+
+.crm-table tr:hover {
+  background: var(--crm-gray-25);
+}
+
+.crm-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--crm-space-3) var(--crm-space-6);
+  font-size: var(--crm-text-sm);
+  font-weight: 500;
+  border-radius: var(--crm-radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.crm-button-primary {
+  background: var(--crm-primary-600);
+  color: white;
+  border-color: var(--crm-primary-600);
+}
+
+.crm-button-primary:hover {
+  background: var(--crm-primary-700);
+  border-color: var(--crm-primary-700);
+}
+
+.crm-button-secondary {
+  background: white;
+  color: var(--crm-gray-700);
+  border-color: var(--crm-gray-300);
+}
+
+.crm-button-secondary:hover {
+  background: var(--crm-gray-50);
+  border-color: var(--crm-gray-400);
+}
+
+.crm-input {
+  width: 100%;
+  padding: var(--crm-space-3) var(--crm-space-4);
+  font-size: var(--crm-text-sm);
+  border: 1px solid var(--crm-gray-300);
+  border-radius: var(--crm-radius-md);
+  background: white;
+  transition: border-color 0.15s ease;
+}
+
+.crm-input:focus {
+  outline: none;
+  border-color: var(--crm-primary-500);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.crm-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--crm-space-1) var(--crm-space-3);
+  font-size: var(--crm-text-xs);
+  font-weight: 500;
+  border-radius: var(--crm-radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.crm-badge-success {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--crm-success);
+}
+
+.crm-badge-warning {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--crm-warning);
+}
+
+.crm-badge-error {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--crm-error);
+}
+
+.crm-badge-info {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--crm-info);
+}
+
+/* Layout Classes */
+.crm-sidebar {
+  width: 240px;
+  background: white;
+  border-right: 1px solid var(--crm-gray-200);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.crm-main {
+  margin-left: 240px;
+  min-height: 100vh;
+  background: var(--crm-gray-25);
+}
+
+.crm-header {
+  background: white;
+  border-bottom: 1px solid var(--crm-gray-200);
+  padding: var(--crm-space-4) var(--crm-space-8);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.crm-content {
+  padding: var(--crm-space-8);
+}
+
+/* Utility Classes */
+.crm-text-xs {
+  font-size: var(--crm-text-xs);
+}
+.crm-text-sm {
+  font-size: var(--crm-text-sm);
+}
+.crm-text-base {
+  font-size: var(--crm-text-base);
+}
+.crm-text-md {
+  font-size: var(--crm-text-md);
+}
+.crm-text-lg {
+  font-size: var(--crm-text-lg);
+}
+
+.crm-font-medium {
+  font-weight: 500;
+}
+.crm-font-semibold {
+  font-weight: 600;
+}
+.crm-font-bold {
+  font-weight: 700;
+}
+
+.crm-text-gray-500 {
+  color: var(--crm-gray-500);
+}
+.crm-text-gray-600 {
+  color: var(--crm-gray-600);
+}
+.crm-text-gray-700 {
+  color: var(--crm-gray-700);
+}
+.crm-text-gray-800 {
+  color: var(--crm-gray-800);
+}
+.crm-text-gray-900 {
+  color: var(--crm-gray-900);
+}
+
+.crm-bg-gray-25 {
+  background-color: var(--crm-gray-25);
+}
+.crm-bg-gray-50 {
+  background-color: var(--crm-gray-50);
+}
+.crm-bg-gray-100 {
+  background-color: var(--crm-gray-100);
+}
+
+.crm-border-gray-200 {
+  border-color: var(--crm-gray-200);
+}
+.crm-border-gray-300 {
+  border-color: var(--crm-gray-300);
+}
+
+.crm-space-y-2 > * + * {
+  margin-top: var(--crm-space-2);
+}
+.crm-space-y-4 > * + * {
+  margin-top: var(--crm-space-4);
+}
+.crm-space-y-6 > * + * {
+  margin-top: var(--crm-space-6);
+}
+
+.crm-flex {
+  display: flex;
+}
+.crm-items-center {
+  align-items: center;
+}
+.crm-justify-between {
+  justify-content: space-between;
+}
+.crm-gap-2 {
+  gap: var(--crm-space-2);
+}
+.crm-gap-4 {
+  gap: var(--crm-space-4);
+}
+.crm-gap-6 {
+  gap: var(--crm-space-6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .crm-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .crm-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .crm-main {
+    margin-left: 0;
+  }
+}
